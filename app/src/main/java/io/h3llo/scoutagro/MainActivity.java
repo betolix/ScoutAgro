@@ -36,7 +36,7 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.List;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener  {
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
     GoogleMap mapa;
 
@@ -65,11 +65,110 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 //                .icon(BitmapDescriptorFactory
 //                        .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mapa.setInfoWindowAdapter(new CustomInfoViewAdapter(LayoutInflater.from(this)));
+        mapa.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
+
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                switch(marker.getTitle()) {
+                    case "Ayacucho":
+                    {
+                        Toast.makeText(getApplicationContext(),"Info Window Ayacucho Clicked", Toast.LENGTH_SHORT).show();
+                        mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacionAyacucho, 7));
+                        try {
+                            GeoJsonLayer layerAyacucho_se = new GeoJsonLayer(mapa, R.raw.y_ayacucho_se, getApplicationContext());
+                            GeoJsonPolygonStyle polyStyleAyacuchoSE = layerAyacucho_se.getDefaultPolygonStyle();
+                            polyStyleAyacuchoSE.setStrokeColor(Color.RED);
+                            polyStyleAyacuchoSE.setStrokeWidth(4);
+                            layerAyacucho_se.addLayerToMap();
+                        }
+                        catch (IOException e){
+                            // String mLogTag;
+                            // Log.e(mLogTag, "GeoJSON file could not be read");
+                        } catch (JSONException e){
+                            // String mLogTag;
+                            // Log.e(mLogTag, "GeoJSON file could not be converted to JSONObject");
+                        }
+
+                    }
+                        break;
+                    case "Moquegua":
+                    {
+                        Toast.makeText(getApplicationContext(),"Info Window Moquegua Clicked", Toast.LENGTH_SHORT).show();
+                        mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacionMoquegua, 7));
+                        try {
+                            GeoJsonLayer layerAyacucho_se = new GeoJsonLayer(mapa, R.raw.y_moquegua_se, getApplicationContext());
+                            GeoJsonPolygonStyle polyStyleAyacuchoSE = layerAyacucho_se.getDefaultPolygonStyle();
+                            polyStyleAyacuchoSE.setStrokeColor(Color.RED);
+                            polyStyleAyacuchoSE.setStrokeWidth(4);
+                            layerAyacucho_se.addLayerToMap();
+                        }
+                        catch (IOException e){
+                            // String mLogTag;
+                            // Log.e(mLogTag, "GeoJSON file could not be read");
+                        } catch (JSONException e){
+                            // String mLogTag;
+                            // Log.e(mLogTag, "GeoJSON file could not be converted to JSONObject");
+                        }
+                    }
+                        break;
+                    case "Piura":
+                    {
+                        Toast.makeText(getApplicationContext(),"Info Window Piura Clicked", Toast.LENGTH_SHORT).show();
+                        mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacionPiura, 7));
+                        try {
+                            GeoJsonLayer layerAyacucho_se = new GeoJsonLayer(mapa, R.raw.y_piura_se, getApplicationContext());
+                            GeoJsonPolygonStyle polyStyleAyacuchoSE = layerAyacucho_se.getDefaultPolygonStyle();
+                            polyStyleAyacuchoSE.setStrokeColor(Color.RED);
+                            polyStyleAyacuchoSE.setStrokeWidth(4);
+                            layerAyacucho_se.addLayerToMap();
+                        }
+                        catch (IOException e){
+                            // String mLogTag;
+                            // Log.e(mLogTag, "GeoJSON file could not be read");
+                        } catch (JSONException e){
+                            // String mLogTag;
+                            // Log.e(mLogTag, "GeoJSON file could not be converted to JSONObject");
+                        }
+                    }
+                        break;
+                    case "Tacna":
+                    {
+                        Toast.makeText(getApplicationContext(),"Info Window Tacna Clicked", Toast.LENGTH_SHORT).show();
+                        mapa.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacionTacna, 7));
+                        try {
+                            GeoJsonLayer layerAyacucho_se = new GeoJsonLayer(mapa, R.raw.y_tacna_se, getApplicationContext());
+                            GeoJsonPolygonStyle polyStyleAyacuchoSE = layerAyacucho_se.getDefaultPolygonStyle();
+                            polyStyleAyacuchoSE.setStrokeColor(Color.RED);
+                            polyStyleAyacuchoSE.setStrokeWidth(4);
+                            layerAyacucho_se.addLayerToMap();
+                        }
+                        catch (IOException e){
+                            // String mLogTag;
+                            // Log.e(mLogTag, "GeoJSON file could not be read");
+                        } catch (JSONException e){
+                            // String mLogTag;
+                            // Log.e(mLogTag, "GeoJSON file could not be converted to JSONObject");
+                        }
+                    }
+                        break;
+                    default:
+                        // code block
+                }
+
+            }
+        });
     }
+
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mapa = googleMap;
+        ubicacionPeru = new LatLng(-10.458852, -74.734769);
+        ubicacionAyacucho= new LatLng(-13.1606481,-74.2262629);
+        ubicacionMoquegua= new LatLng(-17.1938282,-70.9355075);
+        ubicacionPiura= new LatLng(-5.1968859,-80.6301679);
+        ubicacionTacna= new LatLng(-18.013766, -70.255331);
         mapa.setInfoWindowAdapter(new CustomInfoViewAdapter(LayoutInflater.from(this)));
 
 
@@ -122,11 +221,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-        ubicacionPeru = new LatLng(-10.458852, -74.734769);
-        ubicacionAyacucho= new LatLng(-13.1606481,-74.2262629);
-        ubicacionMoquegua= new LatLng(-17.1938282,-70.9355075);
-        ubicacionPiura= new LatLng(-5.1968859,-80.6301679);
-        ubicacionTacna= new LatLng(-18.013766, -70.255331);
+
 
         mapa.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
@@ -171,9 +266,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     }
-
-
-
 
 
 }

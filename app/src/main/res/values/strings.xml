@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Seguro Agrario 2020 - 2021</string>
+    <string name="login">Login</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="registro">Registro</string>
+</resources>

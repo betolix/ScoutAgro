@@ -2,11 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.h3llo.scoutagro">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!--  PERMISOS DE USO DE GPS -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- PERMISOS DE USO DE GPS -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-feature android:name="android.hardware.location.gps"/>
+
+    <uses-feature android:name="android.hardware.location.gps" />
 
     <application
         android:allowBackup="true"
@@ -16,12 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ScoutAgro"
         android:usesCleartextTraffic="true">
+        <activity android:name=".DepDetailActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDuybb1_uQuPo7K2FLVumKhDN3PWzWANac" />
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

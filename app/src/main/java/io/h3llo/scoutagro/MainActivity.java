@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -157,7 +158,18 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         });
+
+        mapa.setOnInfoWindowLongClickListener(new GoogleMap.OnInfoWindowLongClickListener() {
+            @Override
+            public void onInfoWindowLongClick(Marker marker) {
+                Intent intent = new Intent(getApplicationContext(), DepDetailActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
+
+
 
 
 

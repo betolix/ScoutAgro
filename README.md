@@ -12,7 +12,20 @@ App Modules:
 -Itent for sendig data through message app, mail or json to backend.
 
 Graficos ....
-![alt text](./img/001.jpeg)
+![Login](./img/001.jpeg)
+![Login](./img/002.jpeg)7
+![Login](./img/003.jpeg)
+![Login](./img/004.jpeg)
+![Login](./img/004a.jpeg)
+![Login](./img/005.jpeg)
+![Login](./img/006.jpeg)
+![Login](./img/007.jpeg)
+![Login](./img/008.jpeg)
+![Login](./img/009.jpeg)
+![Login](./img/010.jpeg)
+![Login](./img/011.jpeg)
+![Login](./img/012.jpeg)
+
 
 Backed Module:
 

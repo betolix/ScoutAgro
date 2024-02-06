@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.0" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="id_db">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="t_usuario">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="180" y="40"/>
+	<column name="_id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="user_status">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="usuario">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="primer_nombre" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="segundo_nombre">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="apellido_paterno" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="apellido_materno">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="tipo_documento" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="numero_documento" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="email_1" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="email_2">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="operador_celular" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="numero_celular" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="fecha_nacimiento">
+		<type name="date" length="0"/>
+	</column>
+	<column name="role_id">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="role_name">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="password">
+		<type name="varchar" length="256"/>
+	</column>
+	<column name="img">
+		<type name="varchar" length="256"/>
+	</column>
+	<column name="google">
+		<type name="varchar" length="100"/>
+	</column>
+	<constraint name="pk_t_usuario" type="pk-constr" table="public.t_usuario">
+		<columns names="_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="t_metaD_usuario">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="540" y="60"/>
+	<column name="pk_t_metaD_usuario">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="lugar_nacimiento">
+		<type name="varchar" length="100"/>
+	</column>
+</table>
+
+<constraint name="fk_t_usuario" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.t_usuario" table="public.&quot;t_metaD_usuario&quot;">
+	<columns names="pk_t_metaD_usuario" ref-type="src-columns"/>
+	<columns names="_id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="&quot;rel_t_metaD_usuario_t_usuario&quot;" type="relfk"
+	 custom-color="#00fa00"
+	 src-table="public.&quot;t_metaD_usuario&quot;"
+	 dst-table="public.t_usuario"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

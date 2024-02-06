@@ -564,8 +564,6 @@ SELECT pg_catalog.setval('public.roles_role_id_seq1', 1, false);
 --
 
 INSERT INTO public.users (user_id, username) VALUES (1, 'betolix@gmail.com');
-INSERT INTO public.users (user_id, username) VALUES (2, 'aguzmang@dmaran.pe');
-INSERT INTO public.users (user_id, username) VALUES (3, 'ocordero@pacifico.com.pe');
 INSERT INTO public.users (user_id, username) VALUES (4, 'kerberos2k@gmail.com');
 INSERT INTO public.users (user_id, username) VALUES (5, 'juan@gmail.com');
 
@@ -577,8 +575,6 @@ INSERT INTO public.users (user_id, username) VALUES (5, 'juan@gmail.com');
 --
 
 INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (1, 1, 1, 1);
-INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (2, 1, 2, 1);
-INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (3, 2, 1, 2);
 INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (4, 4, 1, 2);
 INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (5, 5, 1, 1);
 

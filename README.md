@@ -27,7 +27,7 @@ Graficos ....
 ![Login](./img/012.jpeg)
 
 
-Backed Module:
+Backend Module:
 
 To setup the backend in a local machine:
 

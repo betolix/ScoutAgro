@@ -2,6 +2,7 @@ package io.h3llo.scoutagro;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.supAsegHas.setText(sectoresList.get(position).superf_aseg_has);
         holder.rendPromKgXHa.setText(sectoresList.get(position).rend_prom_kg_x_ha);
         holder.rendDisp.setText(sectoresList.get(position).rend_disp);
+        holder.nomFile.setText(sectoresList.get(position).nom_file); // ALMACENAR EL NOMBRE DEL ARCHIVO
+
 
     }
 
@@ -144,6 +147,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView supAsegHas; // Superficie Asegurada (ha)
         TextView rendPromKgXHa; // Rendimiento Promedio 5 últimas campañas agricolas (Kg/ha)
         TextView rendDisp; // Rendimiento Disparador (56%) (Kg/ha)
+        TextView nomFile;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -160,6 +164,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             supAsegHas = itemView.findViewById(R.id.sup_aseg);
             rendPromKgXHa = itemView.findViewById(R.id.rend_prom);
             rendDisp = itemView.findViewById(R.id.rend_disp);
+            nomFile = itemView.findViewById(R.id.nom_file);
 
             itemView.setOnClickListener(this);
 
@@ -179,7 +184,31 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         @Override
         public void onClick(View v) {
-            Toast.makeText(v.getContext(), sectoresList.get(getAdapterPosition()).sector_nombre.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), sectoresList.get(getAdapterPosition()).sector_nombre.toString()+" - "+sectoresList.get(getAdapterPosition()).cultivo.toString(), Toast.LENGTH_SHORT).show();
+
+            String departamento = this.departamento.getText().toString();
+            String provincia = this.provincia.getText().toString();
+            String distrito = this.distrito.getText().toString();
+            String sectorEstadistico = this.sectorEstadistico.getText().toString();
+            String cultivo = this.cultivo.getText().toString();
+            String supAsegHas = this.supAsegHas.getText().toString();
+            String rendPromKgXHa = this.rendPromKgXHa.getText().toString();
+            String rendDisp = this.rendDisp.getText().toString();
+            String nomFile = this.nomFile.getText().toString();
+
+
+            Intent i = new Intent(v.getContext(), SectorActivity.class);
+            i.putExtra("departamento",departamento);
+            i.putExtra("provincia",provincia);
+            i.putExtra("distrito",distrito);
+            i.putExtra("sectorEstadistico",sectorEstadistico);
+            i.putExtra("cultivo",cultivo);
+            i.putExtra("supAsegHas",supAsegHas);
+            i.putExtra("rendPromKgXHa",rendPromKgXHa);
+            i.putExtra("rendDisp",rendDisp);
+            i.putExtra("nomFile",  nomFile);
+
+            context.startActivity(i);
         }
     }
 }

@@ -2,6 +2,7 @@ package io.h3llo.scoutagro;
 
 public class SectorEstadistico {
 
+    int item;
     String departamento;
     String provincia;
     String distrito;
@@ -10,8 +11,10 @@ public class SectorEstadistico {
     String superf_aseg_has;
     String rend_prom_kg_x_ha;
     String rend_disp;
+    String nom_file;
 
-    public SectorEstadistico(String departamento, String provincia, String distrito, String sector_nombre, String cultivo, String superf_aseg_has, String rend_prom_kg_x_ha, String rend_disp) {
+    public SectorEstadistico(int item, String departamento, String provincia, String distrito, String sector_nombre, String cultivo, String superf_aseg_has, String rend_prom_kg_x_ha, String rend_disp, String nom_file) {
+        this.item = item;
         this.departamento = departamento;
         this.provincia = provincia;
         this.distrito = distrito;
@@ -20,6 +23,15 @@ public class SectorEstadistico {
         this.superf_aseg_has = superf_aseg_has;
         this.rend_prom_kg_x_ha = rend_prom_kg_x_ha;
         this.rend_disp = rend_disp;
+        this.nom_file = nom_file;
+    }
+
+    public int getItem() {
+        return item;
+    }
+
+    public void setItem(int item) {
+        this.item = item;
     }
 
     public String getDepartamento() {
@@ -84,5 +96,13 @@ public class SectorEstadistico {
 
     public void setRend_disp(String rend_disp) {
         this.rend_disp = rend_disp;
+    }
+
+    public String getNom_file() {
+        return nom_file;
+    }
+
+    public void setNom_file(String nom_file) {
+        this.nom_file = nom_file;
     }
 }

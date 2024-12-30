@@ -80,6 +80,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                             GeoJsonPolygonStyle polyStyleAyacuchoSE = layerAyacucho_se.getDefaultPolygonStyle();
                             polyStyleAyacuchoSE.setStrokeColor(Color.RED);
                             polyStyleAyacuchoSE.setStrokeWidth(4);
+                            //layerAyacucho_se.getFeatures()
                             layerAyacucho_se.addLayerToMap();
                         }
                         catch (IOException e){

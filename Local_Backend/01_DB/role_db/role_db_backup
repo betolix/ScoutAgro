@@ -1,0 +1,726 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.18
+-- Dumped by pg_dump version 9.6.18
+
+-- Started on 2020-09-04 21:03:12
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2203 (class 1262 OID 18894)
+-- Name: role_db; Type: DATABASE; Schema: -; Owner: node_user
+--
+
+CREATE DATABASE role_db WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C' LC_CTYPE = 'C';
+
+
+ALTER DATABASE role_db OWNER TO node_user;
+
+\connect role_db
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 1 (class 3079 OID 12387)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2205 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 192 (class 1259 OID 18923)
+-- Name: app; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.app (
+    app_id bigint NOT NULL,
+    app_code character varying(4) NOT NULL,
+    app_description character varying(50)
+);
+
+
+ALTER TABLE public.app OWNER TO postgres;
+
+--
+-- TOC entry 191 (class 1259 OID 18921)
+-- Name: app_app_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.app_app_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.app_app_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 193 (class 1259 OID 18926)
+-- Name: app_app_id_seq1; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.app_app_id_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.app_app_id_seq1 OWNER TO postgres;
+
+--
+-- TOC entry 2206 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: app_app_id_seq1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.app_app_id_seq1 OWNED BY public.app.app_id;
+
+
+--
+-- TOC entry 198 (class 1259 OID 18949)
+-- Name: menu; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.menu (
+    menu_id bigint NOT NULL,
+    displayname character varying(30) NOT NULL,
+    disabled boolean,
+    iconname character varying(30),
+    route character varying(50),
+    nivel integer,
+    parentid integer,
+    ura integer NOT NULL
+);
+
+
+ALTER TABLE public.menu OWNER TO postgres;
+
+--
+-- TOC entry 197 (class 1259 OID 18947)
+-- Name: menu_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.menu_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.menu_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 199 (class 1259 OID 18952)
+-- Name: menu_menu_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.menu_menu_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.menu_menu_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2207 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: menu_menu_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.menu_menu_id_seq OWNED BY public.menu.menu_id;
+
+
+--
+-- TOC entry 200 (class 1259 OID 18960)
+-- Name: role_menu; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.role_menu (
+    id bigint NOT NULL,
+    id_role smallint,
+    id_menu smallint
+);
+
+
+ALTER TABLE public.role_menu OWNER TO postgres;
+
+--
+-- TOC entry 201 (class 1259 OID 18963)
+-- Name: role_menu_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.role_menu_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.role_menu_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2208 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: role_menu_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.role_menu_id_seq OWNED BY public.role_menu.id;
+
+
+--
+-- TOC entry 189 (class 1259 OID 18910)
+-- Name: roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.roles (
+    role_id bigint NOT NULL,
+    role_name character varying(50),
+    role_description character varying(200)
+);
+
+
+ALTER TABLE public.roles OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 18908)
+-- Name: roles_role_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.roles_role_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.roles_role_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 18913)
+-- Name: roles_role_id_seq1; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.roles_role_id_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.roles_role_id_seq1 OWNER TO postgres;
+
+--
+-- TOC entry 2209 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: roles_role_id_seq1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.roles_role_id_seq1 OWNED BY public.roles.role_id;
+
+
+--
+-- TOC entry 186 (class 1259 OID 18897)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    user_id bigint NOT NULL,
+    username character varying(40) NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 195 (class 1259 OID 18936)
+-- Name: users_roles_app; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users_roles_app (
+    id bigint NOT NULL,
+    user_id integer NOT NULL,
+    app_id integer NOT NULL,
+    role_id integer NOT NULL
+);
+
+
+ALTER TABLE public.users_roles_app OWNER TO postgres;
+
+--
+-- TOC entry 194 (class 1259 OID 18934)
+-- Name: users_roles_app_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_roles_app_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_roles_app_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 196 (class 1259 OID 18939)
+-- Name: users_roles_app_id_seq1; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_roles_app_id_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_roles_app_id_seq1 OWNER TO postgres;
+
+--
+-- TOC entry 2210 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: users_roles_app_id_seq1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_roles_app_id_seq1 OWNED BY public.users_roles_app.id;
+
+
+--
+-- TOC entry 185 (class 1259 OID 18895)
+-- Name: users_user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_user_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 18900)
+-- Name: users_user_id_seq1; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_user_id_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_user_id_seq1 OWNER TO postgres;
+
+--
+-- TOC entry 2211 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: users_user_id_seq1; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_user_id_seq1 OWNED BY public.users.user_id;
+
+
+--
+-- TOC entry 2043 (class 2604 OID 18928)
+-- Name: app app_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app ALTER COLUMN app_id SET DEFAULT nextval('public.app_app_id_seq1'::regclass);
+
+
+--
+-- TOC entry 2045 (class 2604 OID 18954)
+-- Name: menu menu_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.menu ALTER COLUMN menu_id SET DEFAULT nextval('public.menu_menu_id_seq'::regclass);
+
+
+--
+-- TOC entry 2046 (class 2604 OID 18965)
+-- Name: role_menu id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.role_menu ALTER COLUMN id SET DEFAULT nextval('public.role_menu_id_seq'::regclass);
+
+
+--
+-- TOC entry 2042 (class 2604 OID 18915)
+-- Name: roles role_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles ALTER COLUMN role_id SET DEFAULT nextval('public.roles_role_id_seq1'::regclass);
+
+
+--
+-- TOC entry 2041 (class 2604 OID 18902)
+-- Name: users user_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN user_id SET DEFAULT nextval('public.users_user_id_seq1'::regclass);
+
+
+--
+-- TOC entry 2044 (class 2604 OID 18941)
+-- Name: users_roles_app id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users_roles_app ALTER COLUMN id SET DEFAULT nextval('public.users_roles_app_id_seq1'::regclass);
+
+
+--
+-- TOC entry 2188 (class 0 OID 18923)
+-- Dependencies: 192
+-- Data for Name: app; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.app (app_id, app_code, app_description) VALUES (1, 'AP01', 'claimApp');
+INSERT INTO public.app (app_id, app_code, app_description) VALUES (2, 'AP02', 'agriApp');
+
+
+--
+-- TOC entry 2212 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: app_app_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.app_app_id_seq', 1, false);
+
+
+--
+-- TOC entry 2213 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: app_app_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.app_app_id_seq1', 1, false);
+
+
+--
+-- TOC entry 2194 (class 0 OID 18949)
+-- Dependencies: 198
+-- Data for Name: menu; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (1, 'Inicio', NULL, 'mdi mdi-bullseye', 'menv/idpatern/1', 1, 0, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (2, 'Reportes', NULL, 'mdi mdi-gauge', 'menv/idpatern/2', 1, 0, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (3, 'Siniestros', NULL, 'mdi mdi-chart-bubble', 'menv/idpatern/2', 1, 0, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (4, 'Mantenimiento', NULL, 'mdi mdi-widgets', '/progress', 1, 0, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (5, 'Mantenimiento de Usuarios', NULL, 'mdi-account-settings-variant', '/usuarios', 1, 4, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (6, 'Mantenimiento de Roles', NULL, 'mdi-account-settings-variant', '/roles', 1, 4, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (8, '¿Cómo Funciona?', NULL, 'fa-bullhorn', '/tubo-express', 1, 1, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (10, 'Reporte General (tubo)', NULL, 'group', '/graficas1', 2, 2, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (11, 'Reporte SBS - 001', NULL, 'description', '/dashboard', 2, 3, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (12, 'Reporte SBS - 002', NULL, 'description', '/dashboard', 2, 3, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (13, 'Reporte PRE', NULL, 'group', '/dashboard', 2, 2, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (14, 'Reporte Semanal', NULL, 'description', '/dashboard', 2, 3, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (15, 'Reporte General', NULL, 'description', '/progress', 2, 3, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (16, 'Reporte DOMI', NULL, 'mdi mdi-gauge', '/graficas1', 2, 2, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (17, 'Reporte SBS', NULL, 'mdi mdi-gauge', '/graficas1', 2, 2, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (7, 'Presentación', NULL, 'group', '/presentacion', 2, 1, 1);
+
+
+--
+-- TOC entry 2214 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: menu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.menu_id_seq', 1, false);
+
+
+--
+-- TOC entry 2215 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: menu_menu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.menu_menu_id_seq', 1, false);
+
+
+--
+-- TOC entry 2196 (class 0 OID 18960)
+-- Dependencies: 200
+-- Data for Name: role_menu; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (1, 1, 1);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (2, 1, 2);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (3, 1, 3);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (4, 1, 4);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (5, 1, 7);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (6, 1, 8);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (7, 1, 10);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (8, 1, 11);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (9, 1, 12);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (10, 1, 13);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (11, 1, 14);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (12, 1, 15);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (13, 1, 16);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (14, 1, 17);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (15, 2, 1);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (16, 2, 2);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (17, 2, 7);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (18, 2, 8);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (19, 1, 5);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (20, 1, 6);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (21, 2, 10);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (22, 2, 13);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (23, 2, 16);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (24, 2, 17);
+
+
+--
+-- TOC entry 2216 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: role_menu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.role_menu_id_seq', 1, false);
+
+
+--
+-- TOC entry 2185 (class 0 OID 18910)
+-- Dependencies: 189
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.roles (role_id, role_name, role_description) VALUES (1, 'ADMIN_ROLE', NULL);
+INSERT INTO public.roles (role_id, role_name, role_description) VALUES (2, 'VIEW_ROLE', NULL);
+
+
+--
+-- TOC entry 2217 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: roles_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.roles_role_id_seq', 1, false);
+
+
+--
+-- TOC entry 2218 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: roles_role_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.roles_role_id_seq1', 1, false);
+
+
+--
+-- TOC entry 2182 (class 0 OID 18897)
+-- Dependencies: 186
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.users (user_id, username) VALUES (1, 'betolix@gmail.com');
+INSERT INTO public.users (user_id, username) VALUES (2, 'aguzmang@dmaran.pe');
+INSERT INTO public.users (user_id, username) VALUES (3, 'ocordero@pacifico.com.pe');
+INSERT INTO public.users (user_id, username) VALUES (4, 'kerberos2k@gmail.com');
+INSERT INTO public.users (user_id, username) VALUES (5, 'juan@gmail.com');
+
+
+--
+-- TOC entry 2191 (class 0 OID 18936)
+-- Dependencies: 195
+-- Data for Name: users_roles_app; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (1, 1, 1, 1);
+INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (2, 1, 2, 1);
+INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (3, 2, 1, 2);
+INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (4, 4, 1, 2);
+INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (5, 5, 1, 1);
+
+
+--
+-- TOC entry 2219 (class 0 OID 0)
+-- Dependencies: 194
+-- Name: users_roles_app_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_roles_app_id_seq', 1, false);
+
+
+--
+-- TOC entry 2220 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: users_roles_app_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_roles_app_id_seq1', 1, false);
+
+
+--
+-- TOC entry 2221 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_user_id_seq', 1, false);
+
+
+--
+-- TOC entry 2222 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: users_user_id_seq1; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_user_id_seq1', 1, false);
+
+
+--
+-- TOC entry 2052 (class 2606 OID 18933)
+-- Name: app pk_app; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app
+    ADD CONSTRAINT pk_app PRIMARY KEY (app_id);
+
+
+--
+-- TOC entry 2056 (class 2606 OID 18959)
+-- Name: menu pk_menu; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.menu
+    ADD CONSTRAINT pk_menu PRIMARY KEY (menu_id);
+
+
+--
+-- TOC entry 2058 (class 2606 OID 18970)
+-- Name: role_menu pk_role_menu; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.role_menu
+    ADD CONSTRAINT pk_role_menu PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2048 (class 2606 OID 18907)
+-- Name: users pk_users; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT pk_users PRIMARY KEY (user_id);
+
+
+--
+-- TOC entry 2050 (class 2606 OID 18920)
+-- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (role_id);
+
+
+--
+-- TOC entry 2054 (class 2606 OID 18946)
+-- Name: users_roles_app users_roles_app_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users_roles_app
+    ADD CONSTRAINT users_roles_app_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2063 (class 2606 OID 18991)
+-- Name: role_menu fk_menu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.role_menu
+    ADD CONSTRAINT fk_menu FOREIGN KEY (id_menu) REFERENCES public.menu(menu_id) MATCH FULL;
+
+
+--
+-- TOC entry 2062 (class 2606 OID 18986)
+-- Name: role_menu fk_role; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.role_menu
+    ADD CONSTRAINT fk_role FOREIGN KEY (id_role) REFERENCES public.roles(role_id) MATCH FULL;
+
+
+--
+-- TOC entry 2061 (class 2606 OID 18981)
+-- Name: users_roles_app users_roles_app_app_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users_roles_app
+    ADD CONSTRAINT users_roles_app_app_id_fkey FOREIGN KEY (app_id) REFERENCES public.app(app_id);
+
+
+--
+-- TOC entry 2060 (class 2606 OID 18976)
+-- Name: users_roles_app users_roles_app_role_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users_roles_app
+    ADD CONSTRAINT users_roles_app_role_id_fkey FOREIGN KEY (role_id) REFERENCES public.roles(role_id);
+
+
+--
+-- TOC entry 2059 (class 2606 OID 18971)
+-- Name: users_roles_app users_roles_app_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users_roles_app
+    ADD CONSTRAINT users_roles_app_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(user_id);
+
+
+-- Completed on 2020-09-04 21:03:12
+
+--
+-- PostgreSQL database dump complete
+--
+

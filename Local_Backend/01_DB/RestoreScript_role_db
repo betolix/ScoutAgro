@@ -1,0 +1,207 @@
+-- CREATE DATABASE role_db WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C' LC_CTYPE = 'C';
+
+ALTER DATABASE role_db OWNER TO node_user;
+
+CREATE TABLE public.app (
+    app_id bigint NOT NULL,
+    app_code character varying(4) NOT NULL,
+    app_description character varying(50)
+);
+
+CREATE SEQUENCE public.app_app_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+CREATE SEQUENCE public.app_app_id_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+CREATE TABLE public.menu (
+    menu_id bigint NOT NULL,
+    displayname character varying(30) NOT NULL,
+    disabled boolean,
+    iconname character varying(30),
+    route character varying(50),
+    nivel integer,
+    parentid integer,
+    ura integer NOT NULL
+);
+
+CREATE SEQUENCE public.menu_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+    CREATE SEQUENCE public.menu_menu_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+CREATE TABLE public.role_menu (
+    id bigint NOT NULL,
+    id_role smallint,
+    id_menu smallint
+);
+
+
+CREATE SEQUENCE public.role_menu_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+CREATE TABLE public.roles (
+    role_id bigint NOT NULL,
+    role_name character varying(50),
+    role_description character varying(200)
+);
+
+
+CREATE SEQUENCE public.roles_role_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+CREATE SEQUENCE public.roles_role_id_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+
+CREATE TABLE public.users (
+    user_id bigint NOT NULL,
+    username character varying(40) NOT NULL
+);
+
+CREATE TABLE public.users_roles_app (
+    id bigint NOT NULL,
+    user_id integer NOT NULL,
+    app_id integer NOT NULL,
+    role_id integer NOT NULL
+);
+
+CREATE SEQUENCE public.users_roles_app_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+CREATE SEQUENCE public.users_roles_app_id_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+CREATE SEQUENCE public.users_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+CREATE SEQUENCE public.users_user_id_seq1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+INSERT INTO public.app (app_id, app_code, app_description) VALUES (1, 'AP01', 'claimApp');
+INSERT INTO public.app (app_id, app_code, app_description) VALUES (2, 'AP02', 'agriApp');
+
+
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (1, 'Inicio', NULL, 'mdi mdi-bullseye', 'menv/idpatern/1', 1, 0, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (2, 'Reportes', NULL, 'mdi mdi-gauge', 'menv/idpatern/2', 1, 0, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (3, 'Siniestros', NULL, 'mdi mdi-chart-bubble', 'menv/idpatern/2', 1, 0, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (4, 'Mantenimiento', NULL, 'mdi mdi-widgets', '/progress', 1, 0, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (5, 'Mantenimiento de Usuarios', NULL, 'mdi-account-settings-variant', '/usuarios', 1, 4, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (6, 'Mantenimiento de Roles', NULL, 'mdi-account-settings-variant', '/roles', 1, 4, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (8, '¿Cómo Funciona?', NULL, 'fa-bullhorn', '/tubo-express', 1, 1, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (10, 'Reporte General (tubo)', NULL, 'group', '/graficas1', 2, 2, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (11, 'Reporte SBS - 001', NULL, 'description', '/dashboard', 2, 3, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (12, 'Reporte SBS - 002', NULL, 'description', '/dashboard', 2, 3, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (13, 'Reporte PRE', NULL, 'group', '/dashboard', 2, 2, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (14, 'Reporte Semanal', NULL, 'description', '/dashboard', 2, 3, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (15, 'Reporte General', NULL, 'description', '/progress', 2, 3, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (16, 'Reporte DOMI', NULL, 'mdi mdi-gauge', '/graficas1', 2, 2, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (17, 'Reporte SBS', NULL, 'mdi mdi-gauge', '/graficas1', 2, 2, 1);
+INSERT INTO public.menu (menu_id, displayname, disabled, iconname, route, nivel, parentid, ura) VALUES (7, 'Presentación', NULL, 'group', '/presentacion', 2, 1, 1);
+
+
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (1, 1, 1);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (2, 1, 2);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (3, 1, 3);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (4, 1, 4);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (5, 1, 7);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (6, 1, 8);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (7, 1, 10);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (8, 1, 11);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (9, 1, 12);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (10, 1, 13);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (11, 1, 14);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (12, 1, 15);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (13, 1, 16);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (14, 1, 17);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (15, 2, 1);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (16, 2, 2);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (17, 2, 7);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (18, 2, 8);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (19, 1, 5);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (20, 1, 6);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (21, 2, 10);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (22, 2, 13);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (23, 2, 16);
+INSERT INTO public.role_menu (id, id_role, id_menu) VALUES (24, 2, 17);
+
+
+
+INSERT INTO public.roles (role_id, role_name, role_description) VALUES (1, 'ADMIN_ROLE', NULL);
+INSERT INTO public.roles (role_id, role_name, role_description) VALUES (2, 'VIEW_ROLE', NULL);
+
+
+
+INSERT INTO public.users (user_id, username) VALUES (1, 'betolix@gmail.com');
+INSERT INTO public.users (user_id, username) VALUES (2, 'aguzmang@dmaran.pe');
+INSERT INTO public.users (user_id, username) VALUES (3, 'ocordero@pacifico.com.pe');
+INSERT INTO public.users (user_id, username) VALUES (4, 'kerberos2k@gmail.com');
+INSERT INTO public.users (user_id, username) VALUES (5, 'juan@gmail.com');
+
+
+INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (1, 1, 1, 1);
+INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (2, 1, 2, 1);
+INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (3, 2, 1, 2);
+INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (4, 4, 1, 2);
+INSERT INTO public.users_roles_app (id, user_id, app_id, role_id) VALUES (5, 5, 1, 1);
+
+
+
+
+
+
+
+

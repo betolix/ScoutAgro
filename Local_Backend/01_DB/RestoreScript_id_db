@@ -1,0 +1,47 @@
+Create Postgres User node_user with password node_password
+
+CREATE DATABASE id_db WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C' LC_CTYPE = 'C';
+
+ALTER DATABASE id_db OWNER TO node_user;
+
+CREATE TABLE public.t_usuario (
+    _id bigint NOT NULL,
+    user_status character varying(10),
+    usuario character varying(100),
+    primer_nombre character varying(100) NOT NULL,
+    segundo_nombre character varying(100),
+    apellido_paterno character varying(100) NOT NULL,
+    apellido_materno character varying(100),
+    tipo_documento character varying(100) NOT NULL,
+    numero_documento character varying(100) NOT NULL,
+    email_1 character varying(100) NOT NULL,
+    email_2 character varying(100),
+    operador_celular character varying(100) NOT NULL,
+    numero_celular character varying(100) NOT NULL,
+    fecha_nacimiento date,
+    role_id character varying(20),
+    role_name character varying(20),
+    password character varying(256),
+    img character varying(256),
+    google character varying(100)
+);
+
+ALTER TABLE public.t_usuario OWNER TO node_user;
+
+CREATE SEQUENCE public.t_usuario__id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.t_usuario__id_seq OWNER TO node_user;
+
+
+
+INSERT INTO public.t_usuario (_id, user_status, usuario, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, tipo_documento, numero_documento, email_1, email_2, operador_celular, numero_celular, fecha_nacimiento, role_id, role_name, password, img, google) VALUES (1, NULL, 'blix', 'Alberto', 'Manuel', 'Lazo', 'Begazo', 'DNI', '41485865', 'betolix@gmail.com', 'AlbertoLazoB@gmail.com', 'Movistar', '959371888', '1982-01-14', '1', 'ADMIN_ROLE', '$2a$10$tvoYM6U3N6pV6m0IKVpu7ewYiodXU92Y00Rb91qZ8XgWA4dCStFdy', '1-989.png', NULL);
+INSERT INTO public.t_usuario (_id, user_status, usuario, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, tipo_documento, numero_documento, email_1, email_2, operador_celular, numero_celular, fecha_nacimiento, role_id, role_name, password, img, google) VALUES (4, NULL, 'Kerb', 'Fernando', 'Ronald', 'Martinez', 'Ortiz', 'DNI', '41326904', 'kerberos2k@gmail.com', 'femartinez@paxifico.com.pe', 'Movistar', '959229145', NULL, '2', 'USER_ROLE', '$2a$10$xTYm7lzLAIVVq3W/P59Pa.PtJuY3ANJUDQToOBQHAD7prs/OFMvsC', '4-405.png', 'false');
+INSERT INTO public.t_usuario (_id, user_status, usuario, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, tipo_documento, numero_documento, email_1, email_2, operador_celular, numero_celular, fecha_nacimiento, role_id, role_name, password, img, google) VALUES (5, NULL, 'John', 'Juan', 'Juen', 'Jaun', 'Juan', 'DNI', '41414141', 'juan@gmail.com', 'juen@gmail.com', 'Movistar', '999999999', '1992-01-14', '1', '1', '$2a$10$5NkBFHzMUtBj3e4hbBd/.u3AopiCgf1FpcRK9e8LKMuOCQn0/Cv3.', NULL, 'false');
+
+

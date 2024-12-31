@@ -1,0 +1,28 @@
+{
+  "name": "backend-server",
+  "version": "1.0.0",
+  "description": "Servidor backend Angular Adv",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alberto Lazo",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6",
+    "google-auth-library": "^9.15.0",
+    "jsonwebtoken": "^9.0.2",
+    "material-components-web": "^7.0.0",
+    "mongoose": "^8.9.2",
+    "mongoose-unique-validator": "^4.0.1",
+    "pg": "^8.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

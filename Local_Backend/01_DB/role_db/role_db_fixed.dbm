@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.1.3" use-changelog="false" max-obj-count="7"
+	 last-position="0,0" last-zoom="1"
+	 default-owner="postgres"
+	 layers="Default,"
+	 active-layers=""
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<role name="node_user"
+ superuser="true"
+ createdb="true"
+ createrole="true"
+ inherit="true"
+ login="true"
+ password="********">
+</role>
+
+<database name="role_db" encoding="UTF8" lc-collate="C" lc-ctype="C" is-template="false" allow-conns="true">
+	<role name="node_user"/>
+	<tablespace name="pg_default"/>
+</database>
+
+<schema name="public" layers="0" rect-visible="true" fill-color="#e1e1e1" name-color="#000000" sql-disabled="true">
+</schema>
+
+<sequence name="users_user_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="users" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="27.8963" y="19"/>
+	<column name="user_id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="username" not-null="true">
+		<type name="character varying" length="40"/>
+	</column>
+	<constraint name="pk_users" type="pk-constr" table="public.users">
+		<columns names="user_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="roles_role_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="roles" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="325.827" y="350.724"/>
+	<column name="role_id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="role_name">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="role_description">
+		<type name="varchar" length="200"/>
+	</column>
+	<constraint name="roles_pkey" type="pk-constr" table="public.roles">
+		<columns names="role_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="app_app_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="app" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="30.6552" y="123.828"/>
+	<column name="app_id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="app_code" not-null="true">
+		<type name="character varying" length="4"/>
+	</column>
+	<column name="app_description">
+		<type name="character varying" length="50"/>
+	</column>
+	<constraint name="pk_app" type="pk-constr" table="public.app">
+		<columns names="app_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="users_roles_app_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="users_roles_app" layers="0" collapse-mode="1" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="509.276" y="109.345"/>
+	<column name="id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="user_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="app_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="role_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="users_roles_app_pkey" type="pk-constr" table="public.users_roles_app">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="menu_id_seq" cycle="false" start="1" increment="1" min-value="1" max-value="9223372036854775807" cache="1">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="menu" layers="0" collapse-mode="2" max-obj-count="9" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="825.828" y="364.517"/>
+	<column name="menu_id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="displayname" not-null="true">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="disabled">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="iconname">
+		<type name="character varying" length="30"/>
+	</column>
+	<column name="route">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="nivel">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="parentid">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="ura" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="pk_menu" type="pk-constr" table="public.menu">
+		<columns names="menu_id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="role_menu" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="571.344" y="341.069"/>
+	<column name="id" not-null="true">
+		<type name="bigserial" length="0"/>
+	</column>
+	<column name="id_role">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="id_menu">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="pk_role_menu" type="pk-constr" table="public.role_menu">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="users_roles_app_user_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.users" table="public.users_roles_app">
+	<columns names="user_id" ref-type="src-columns"/>
+	<columns names="user_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="users_roles_app_role_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.roles" table="public.users_roles_app">
+	<columns names="role_id" ref-type="src-columns"/>
+	<columns names="role_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="users_roles_app_app_id_fkey" type="fk-constr" comparison-type="MATCH SIMPLE"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.app" table="public.users_roles_app">
+	<columns names="app_id" ref-type="src-columns"/>
+	<columns names="app_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_role" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.roles" table="public.role_menu">
+	<columns names="id_role" ref-type="src-columns"/>
+	<columns names="role_id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_menu" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.menu" table="public.role_menu">
+	<columns names="id_menu" ref-type="src-columns"/>
+	<columns names="menu_id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_users_roles_app_users" type="relfk" layers="0"
+	 src-table="public.users_roles_app"
+	 dst-table="public.users" reference-fk="users_roles_app_user_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_users_roles_app_roles" type="relfk" layers="0"
+	 src-table="public.users_roles_app"
+	 dst-table="public.roles" reference-fk="users_roles_app_role_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_users_roles_app_app" type="relfk" layers="0"
+	 src-table="public.users_roles_app"
+	 dst-table="public.app" reference-fk="users_roles_app_app_id_fkey"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="rel_role_menu_roles" type="relfk" layers="0"
+	 src-table="public.role_menu"
+	 dst-table="public.roles" reference-fk="fk_role"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_role_menu_menu" type="relfk" layers="0"
+	 src-table="public.role_menu"
+	 dst-table="public.menu" reference-fk="fk_menu"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

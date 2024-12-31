@@ -1,0 +1,16 @@
+# in the backend directory
+
+npm install
+
+npm audit fix --force
+
+npm run start
+
+ifconfig | grep 'Link\|inet'
+
+replace the IP address in api.WebServiceJWT   192.168.1.76
+
+Upgrade to Gradle 8.9 and re-sync
+
+Start AGP upgrade
+

@@ -10,7 +10,7 @@ public class WebServiceJWT {
     // private static final String BASE_URL_JWT = "http://10.0.2.2:8046";
     // private static final String BASE_URL_JWT = "http://10.0.2.2:3000";
     // private static final String BASE_URL_JWT = "http://200.37.16.203:3000";
-    private static final String BASE_URL_JWT = "http://192.168.1.76:3000";
+    private static final String BASE_URL_JWT = "http://172.20.10.4:3000";
     // private static final String BASE_URL_JWT = "http://190.116.45.202:3000";
 
 

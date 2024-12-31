@@ -58,17 +58,29 @@ Dependencies
 # Setup
 
 Install postgres
-Create the database user node_user with password node_password ant the corresponding privileges(this can be changed accordingly but they have to be modifyed in the file backend-server/secrets/db_configuration.js)
-Create the databases id_db and role_db with the RestoreScript_id_db and the RestoreScript_role_db (execute sql commands in pgAdmin or as psql)
+Create the database user node_user with password node_password and the corresponding privileges(this can be changed accordingly but they have to be modified in the file /Local_Backend/02_backend-server/secrets/db_configuration.js)
+Create the databases id_db and role_db with the 
+
+/Local_Backend/01_DB/RestoreScript_id_db (execute sql commands in pgAdmin or as psql)
+
+
+and the 
+
+
+/Local_Backend/01_DB/RestoreScript_role_db (execute sql commands in pgAdmin or as psql)
 
 Install node
 In the command line, navigate to the backend-server folder
+
+
 Execute the following commands
+
+
 npm install
 npm audit fix --force
 npm run start
 
-On a differente terminar run this command and local the local ip address of the computer where you are executing the backend
+On a differente terminal run this command and local the local ip address of the computer where you are executing the backend
 
 ifconfig | grep "inet.*broadcast"  
 

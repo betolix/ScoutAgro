@@ -22,6 +22,16 @@
 ![alt text](https://github.com/betolix/ScoutAgro/blob/main/Screenshots/016.png?raw=true)
 ![alt text](https://github.com/betolix/ScoutAgro/blob/main/Screenshots/017.png?raw=true)
 
+<!--- ### INTRO PARAGRAPH ( SEO Value keywords ) Deeper dive -->
+# A deeper dive
+
+### Features:
+
+Login Screen - User Authentication: Secure user authentication using a local backend, Encrypted Token stored in Shared Preferences.
+
+Encrypted Shared Preferences: Securely store user data using encrypted shared preferences.
+
+MapView showing
 
 
 Project Structure
